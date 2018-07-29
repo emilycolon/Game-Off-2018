@@ -26,7 +26,7 @@ body {
   grid-row: 1 / span 2;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
 .score {
@@ -34,7 +34,17 @@ body {
   grid-row: 1;
 }
 
-.lives {
+.score-display {
   grid-column: 1;
   grid-row: 2;
+}
+
+.life {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.life-display {
+  grid-column: 1;
+  grid-row: 4;
 }
