@@ -18,7 +18,6 @@ body {
   grid-row: 1 / span 2;
   width: 800px;
   height: 600px;
-  background-color: black;
 }
 
 .right {
