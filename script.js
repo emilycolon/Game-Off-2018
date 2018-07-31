@@ -8,18 +8,24 @@ function preload() {
   game.load.image('sky', 'images/sky.png');
   game.load.image('cloud', 'images/cloud.png');
   game.load.image('star', 'images/star.png');
-  game.load.image('dude', 'images/pegasus.png');
+  game.load.image('dragon', 'images/dragon.png');
+  game.load.image('pegasus', 'images/pegasus.png');
 }
 
 var player;
 var cursors;
+
 var clouds;
+var x;
+
 var stars;
+var starCreateX;
+var starResetX;
+
 var score = 0;
 var scoreText;
-var x;
-var starCreateX;
-var startResetX;
+
+var dragon;
 
 function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -30,14 +36,13 @@ function create() {
   // Add Clouds
   clouds = game.add.group();
   clouds.enableBody = true;
-
   var cloud = clouds.create(250, 150, 'cloud');
   cloud.checkWorldBounds = true;
   cloud.events.onOutOfBounds.add(cloudOut, this);
   cloud.body.velocity.y = 100;
 
   // Add Player
-  player = game.add.sprite(350, game.world.height - 120, 'dude');
+  player = game.add.sprite(350, game.world.height - 120, 'pegasus');
   game.physics.arcade.enable(player);
   player.body.gravity.y = 0;
   player.body.collideWorldBounds = true;
@@ -45,14 +50,11 @@ function create() {
   // Add Stars
   stars = game.add.group();
   stars.enableBody = true;
-
   for (var i = 0; i < 10; i++) {
-    starCreateX = Math.floor(Math.random() * Math.floor(775));
-    var star = stars.create(starCreateX, -25, 'star');
-    star.checkWorldBounds = true;
-    star.events.onOutOfBounds.add(starOut, this);
-    star.body.velocity.y = 125;
+    createStar();
   }
+
+  // Add Dragon
 
   scoreText = game.add.text(16, 16, 'score: 0', {
     fontSize: '32px',
@@ -63,6 +65,10 @@ function create() {
 }
 
 function update() {
+  // if (gameOver) {
+  //   return;
+  // }
+
   game.physics.arcade.overlap(player, stars, collectStar, null, this);
 
   //  Reset the players velocity (movement)
@@ -75,7 +81,7 @@ function update() {
     //  Move to the right
     player.body.velocity.x = 250;
   } else {
-    //  Stand still
+    //  Still
     player.animations.stop();
   }
 }
@@ -86,21 +92,36 @@ function cloudOut(cloud) {
   cloud.body.velocity.y = 100;
 }
 
+function createStar() {
+  starCreateX = Math.floor(Math.random() * Math.floor(775));
+  var star = stars.create(starCreateX, -25, 'star');
+  star.checkWorldBounds = true;
+  star.events.onOutOfBounds.add(starOut, this);
+  star.body.velocity.y = 125;
+}
+
 function starOut(star) {
-  startResetX = Math.floor(Math.random() * Math.floor(775));
-  star.reset(startResetX, -25);
+  starResetX = Math.floor(Math.random() * Math.floor(775));
+  star.reset(starResetX, -25);
   star.body.velocity.y = 125;
 }
 
 function collectStar(player, star) {
-  // Removes the star from the screen
+  // Removes the star from the screen and creates a new one
   star.kill();
+  createStar();
 
   //  Add and update the score
   score += 10;
   scoreText.text = 'Score: ' + score;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOM up and running....');
-});
+function gotCaught(player, dragon) {
+  this.physics.pause();
+
+  player.setTint(0xff0000);
+
+  player.anims.play('turn');
+
+  gameOver = true;
+}
