@@ -33,7 +33,10 @@ main {
   justify-self: center;
 }
 
+a {
+  margin: 1% 0;
+}
+
 footer {
-  margin-top: 1%;
   font-size: 20px;
 }

@@ -221,9 +221,15 @@ function gameOver(player, dragon) {
   gameOverMsg.setShadow(4, 4, 'rgba(0,0,0,0.5)', 5);
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('a').addEventListener('click', () => {
+    location.reload();
+  });
+});
+
 // TODO: Finish commenting on code
+// TODO: See about making load take a little longer so fonts appear?
 // TODO: Refactor
-// TODO: Add New Game button to HTML/CSS
 // TODO: Check HTML/CSS Validators
 // TODO: Write README
 
