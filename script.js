@@ -91,6 +91,7 @@ function create() {
   dragonCreateX = Math.floor(Math.random() * Math.floor(670));
   dragon = game.add.sprite(dragonCreateX, 0, 'dragon');
   game.physics.arcade.enable(dragon);
+  dragon.body.velocity.setTo(200, 200);
   dragon.body.collideWorldBounds = true;
   dragon.body.gravity.x = game.rnd.integerInRange(-50, 50);
   dragon.body.gravity.y = 20 + Math.random() * 100;
@@ -121,6 +122,19 @@ function update() {
     player.animations.stop();
   }
 }
+
+// function randomize() {
+//   console.log(`Collision with world bounds!`);
+//   //   // (dragon.body.gravity.x = +integer)
+//   //   //   ? (dragon.body.gravity.x = game.rnd.integerInRange(-50, 0))
+//   //   //   : (dragon.body.gravity.x = game.rnd.integerInRange(0, 50));
+//   //   // dragon.body.gravity.y = 20 + Math.random() * 100;
+//   // console.log(
+//   //   `Collision gravX is ${dragon.body.gravity.x} and gravY is ${
+//   //     dragon.body.gravity.y
+//   //   }`
+//   // );
+// }
 
 function createText() {
   // Add Score Section
@@ -206,8 +220,5 @@ function gameOver(player, dragon) {
   gameOverMsg = game.add.text(225, 180, `GAME OVER\n\nSCORE: ${score} `);
   gameOverMsg.font = 'VT323';
   gameOverMsg.fontSize = 100;
-  gameOverMsg.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
+  gameOverMsg.setShadow(4, 4, 'rgba(0,0,0,0.5)', 5);
 }
-
-// TODO: Find a way to randomize the dragons X and Y gravity
-// numbers on world bounds collisions
