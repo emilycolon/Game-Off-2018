@@ -10,7 +10,6 @@ h1 {
 }
 
 /* Rainbow text effect found here: https://stackoverflow.com/questions/40557461/rainbow-gradient-on-text-in-css */
-
 .rainbow {
   background: red;
   background: -webkit-linear-gradient(left, red, orange, yellow, green, cyan, blue, violet);
