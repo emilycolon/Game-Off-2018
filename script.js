@@ -4,15 +4,13 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game-container', {
   update: update
 });
 
-// Google Webfont code found here: https://github.com/photonstorm/phaser-examples/blob/master/examples/text/google%20webfonts.js
+/* Google Webfont code found here:
+https://github.com/photonstorm/phaser-examples/blob/master/examples/text/google%20webfonts.js */
 WebFontConfig = {
-  //  'active' means all requested fonts have finished loading
-  //  1 second delay before calling 'createText' or the browser cannot render the text the first time it's created.
   active: function() {
     game.time.events.add(Phaser.Timer.SECOND, createText, this);
   },
 
-  //  The Google Fonts we want to load
   google: {
     families: ['VT323']
   }
@@ -25,6 +23,8 @@ function preload() {
     'https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js'
   );
 
+  /* Example on using Blur filter found 
+  here: https://phaser.io/examples/v2/filters/blur */
   // Scripts to use Blur filter on pause
   game.load.script(
     'BlurX',
@@ -35,11 +35,12 @@ function preload() {
     'https://cdn.rawgit.com/photonstorm/phaser-ce/master/filters/BlurY.js'
   );
 
+  // Load images to be used in the game
   game.load.image('sky', 'images/sky.png');
   game.load.image('cloud', 'images/cloud.png');
   game.load.image('star', 'images/star.png');
   game.load.image('dragon', 'images/dragon.png');
-  game.load.image('pegasus', 'images/pegasus.png');
+  game.load.image('unicorn', 'images/unicorn.png');
 }
 
 var player;
@@ -75,7 +76,8 @@ function create() {
   cloud.body.velocity.y = 100;
 
   // Add Player
-  player = game.add.sprite(350, game.world.height - 140, 'pegasus');
+  player = game.add.sprite(350, game.world.height - 140, 'unicorn');
+  player.scale.setTo(0.8);
   game.physics.arcade.enable(player);
   player.body.gravity.y = 0;
   player.body.collideWorldBounds = true;
@@ -91,7 +93,11 @@ function create() {
   dragonCreateX = Math.floor(Math.random() * Math.floor(670));
   dragon = game.add.sprite(dragonCreateX, 0, 'dragon');
   game.physics.arcade.enable(dragon);
-  dragon.body.velocity.setTo(200, 200);
+  dragon.body.velocity.setTo(180, 180);
+
+  /* Code example to allow collision with world bound and randomize X/Y gravity 
+   found here: https://phaser.io/examples/v2/sprites/collide-world-bounds
+   */
   dragon.body.collideWorldBounds = true;
   dragon.body.gravity.x = game.rnd.integerInRange(-50, 50);
   dragon.body.gravity.y = 20 + Math.random() * 100;
@@ -123,25 +129,14 @@ function update() {
   }
 }
 
-// function randomize() {
-//   console.log(`Collision with world bounds!`);
-//   //   // (dragon.body.gravity.x = +integer)
-//   //   //   ? (dragon.body.gravity.x = game.rnd.integerInRange(-50, 0))
-//   //   //   : (dragon.body.gravity.x = game.rnd.integerInRange(0, 50));
-//   //   // dragon.body.gravity.y = 20 + Math.random() * 100;
-//   // console.log(
-//   //   `Collision gravX is ${dragon.body.gravity.x} and gravY is ${
-//   //     dragon.body.gravity.y
-//   //   }`
-//   // );
-// }
-
 function createText() {
   // Add Score Section
   scoreText = game.add.text(16, 16, 'score:');
   scoreText.font = 'VT323';
   scoreText.fontSize = 36;
 
+  /* Code to create pause button created based on code example Pause Menu
+  found here: https://phaser.io/examples/v2/misc/pause-menu */
   // Create a label to use as a pause button
   pauseLabel = game.add.text(game.world.width - 100, 16, 'pause');
   pauseLabel.font = 'VT323';
@@ -180,6 +175,9 @@ function unpause(event) {
     blur('remove', dragon, player, clouds, stars);
   }
 }
+
+/* cloudOut and starOut functions based on Out of Bounds code example
+found here: https://phaser.io/examples/v2/sprites/out-of-bounds */
 
 function cloudOut(cloud) {
   x = Math.floor(Math.random() * Math.floor(400));
@@ -222,3 +220,11 @@ function gameOver(player, dragon) {
   gameOverMsg.fontSize = 100;
   gameOverMsg.setShadow(4, 4, 'rgba(0,0,0,0.5)', 5);
 }
+
+// TODO: Finish commenting on code
+// TODO: Refactor
+// TODO: Add New Game button to HTML/CSS
+// TODO: Check HTML/CSS Validators
+// TODO: Write README
+
+// TODO: GOLD - Increase the speed of the stars once XXX points earned
