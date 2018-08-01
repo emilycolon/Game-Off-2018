@@ -9,10 +9,10 @@ WebFontConfig = {
   //  'active' means all requested fonts have finished loading
   //  1 second delay before calling 'createText' or the browser cannot render the text the first time it's created.
   active: function() {
-    game.time.events.add(Phaser.Timer.SECOND, preload, this);
+    game.time.events.add(Phaser.Timer.SECOND, createText, this);
   },
 
-  //  The Google Fonts we want to load (specify as many as you like in the array)
+  //  The Google Fonts we want to load
   google: {
     families: ['VT323']
   }
@@ -25,12 +25,6 @@ function preload() {
     'https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js'
   );
 
-  game.load.image('sky', 'images/sky.png');
-  game.load.image('cloud', 'images/cloud.png');
-  game.load.image('star', 'images/star.png');
-  game.load.image('dragon', 'images/dragon.png');
-  game.load.image('pegasus', 'images/pegasus.png');
-
   // Scripts to use Blur filter on pause
   game.load.script(
     'BlurX',
@@ -40,6 +34,12 @@ function preload() {
     'BlurY',
     'https://cdn.rawgit.com/photonstorm/phaser-ce/master/filters/BlurY.js'
   );
+
+  game.load.image('sky', 'images/sky.png');
+  game.load.image('cloud', 'images/cloud.png');
+  game.load.image('star', 'images/star.png');
+  game.load.image('dragon', 'images/dragon.png');
+  game.load.image('pegasus', 'images/pegasus.png');
 }
 
 var player;
@@ -64,6 +64,8 @@ function create() {
 
   game.add.sprite(0, 0, 'sky');
 
+  createText();
+
   // Add Clouds
   clouds = game.add.group();
   clouds.enableBody = true;
@@ -73,7 +75,7 @@ function create() {
   cloud.body.velocity.y = 100;
 
   // Add Player
-  player = game.add.sprite(350, game.world.height - 120, 'pegasus');
+  player = game.add.sprite(350, game.world.height - 140, 'pegasus');
   game.physics.arcade.enable(player);
   player.body.gravity.y = 0;
   player.body.collideWorldBounds = true;
@@ -94,24 +96,6 @@ function create() {
   dragon.body.gravity.y = 20 + Math.random() * 100;
   dragon.body.bounce.setTo(1);
 
-  // Add Score Section
-  scoreText = game.add.text(16, 16, 'score: 0');
-  scoreText.font = 'VT323';
-  scoreText.fontSize = 36;
-
-  // Create a label to use as a pause button
-  pauseLabel = game.add.text(game.world.width - 100, 16, 'pause');
-  pauseLabel.font = 'VT323';
-  pauseLabel.fontSize = 36;
-
-  pauseLabel.inputEnabled = true;
-  pauseLabel.events.onInputUp.add(function() {
-    // When the pause button is pressed, pause the game
-    game.paused = true;
-    // TODO: OVERLAY AN OPAQUE LAYER WITH "PAUSED"
-    addBlur();
-  });
-
   // Add a input listener that can help us return from being paused
   game.input.onDown.add(unpause, self);
 
@@ -122,11 +106,10 @@ function create() {
 function update() {
   game.physics.arcade.overlap(player, stars, collectStar, null, this);
 
-  game.physics.arcade.collide(player, dragon, gotCaught, null, this);
+  game.physics.arcade.collide(player, dragon, gameOver, null, this);
 
   //  Reset the player's velocity (movement)
   player.body.velocity.x = 0;
-
   if (cursors.left.isDown) {
     //  Move to the left
     player.body.velocity.x = -250;
@@ -139,30 +122,40 @@ function update() {
   }
 }
 
-function addBlur() {
-  var blurX = game.add.filter('BlurX');
-  var blurY = game.add.filter('BlurY');
+function createText() {
+  // Add Score Section
+  scoreText = game.add.text(16, 16, 'score:');
+  scoreText.font = 'VT323';
+  scoreText.fontSize = 36;
 
-  blurX.blur = 10;
-  blurY.blur = 1;
+  // Create a label to use as a pause button
+  pauseLabel = game.add.text(game.world.width - 100, 16, 'pause');
+  pauseLabel.font = 'VT323';
+  pauseLabel.fontSize = 36;
 
-  dragon.filters = [blurX, blurY];
-  player.filters = [blurX, blurY];
-  clouds.filters = [blurX, blurY];
-  stars.filters = [blurX, blurY];
+  pauseLabel.inputEnabled = true;
+  pauseLabel.events.onInputUp.add(function() {
+    // When the pause button is pressed, pause the game
+    game.paused = true;
+    blur('add', dragon, player, clouds, stars);
+  });
 }
 
-function removeBlur() {
+function blur(action, sprite) {
   var blurX = game.add.filter('BlurX');
   var blurY = game.add.filter('BlurY');
 
-  blurX.blur = 0;
-  blurY.blur = 0;
+  if (action === 'add') {
+    blurX.blur = 10;
+    blurY.blur = 1;
+  } else {
+    blurX.blur = 0;
+    blurY.blur = 0;
+  }
 
-  dragon.filters = [blurX, blurY];
-  player.filters = [blurX, blurY];
-  clouds.filters = [blurX, blurY];
-  stars.filters = [blurX, blurY];
+  for (i = 1; i < arguments.length; i++) {
+    arguments[i].filters = [blurX, blurY];
+  }
 }
 
 function unpause(event) {
@@ -170,7 +163,7 @@ function unpause(event) {
   if (game.paused) {
     // Unpause the game
     game.paused = false;
-    removeBlur();
+    blur('remove', dragon, player, clouds, stars);
   }
 }
 
@@ -201,13 +194,19 @@ function collectStar(player, star) {
 
   //  Add and update the score
   score += 10;
-  scoreText.text = 'Score: ' + score;
+  scoreText.text = `score: ${score}`;
 }
 
-function gotCaught(player, dragon) {
+function gameOver(player, dragon) {
   game.paused = true;
   player.tint = 0xff0000;
-  gameOver = true;
+  blur('add', dragon, player, clouds, stars, scoreText, pauseLabel);
+
+  // Create Game Over Message
+  gameOverMsg = game.add.text(225, 180, `GAME OVER\n\nSCORE: ${score} `);
+  gameOverMsg.font = 'VT323';
+  gameOverMsg.fontSize = 100;
+  gameOverMsg.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
 }
 
 // TODO: Find a way to randomize the dragons X and Y gravity
