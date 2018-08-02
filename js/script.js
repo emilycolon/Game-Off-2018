@@ -17,13 +17,16 @@ var stars;
 var dragon;
 var score = 0;
 var scoreText;
+var music;
+var ping;
+var growl;
 
 /* Google Webfont code found here:
  * https://github.com/photonstorm/phaser-examples/blob/master/examples/text/google%20webfonts.js 
  */
 WebFontConfig = {
   active: function() {
-    game.time.events.add(Phaser.Timer.SECOND * 3, createText, this);
+    game.time.events.add(Phaser.Timer.SECOND, createText, this);
   },
 
   google: {
@@ -54,15 +57,23 @@ function preload() {
   );
 
   // Load images to be used in the game
-  game.load.image('sky', 'images/sky.png');
-  game.load.image('cloud', 'images/cloud.png');
-  game.load.image('star', 'images/star.png');
-  game.load.image('dragon', 'images/dragon.png');
-  game.load.image('unicorn', 'images/unicorn.png');
+  game.load.image('sky', 'assets/images/sky.png');
+  game.load.image('cloud', 'assets/images/cloud.png');
+  game.load.image('star', 'assets/images/star.png');
+  game.load.image('dragon', 'assets/images/dragon.png');
+  game.load.image('unicorn', 'assets/images/unicorn.png');
+
+  // Load audio to be used in the game
+  game.load.audio('song', 'assets/audio/music.mp3');
+  game.load.audio('ping', 'assets/audio/star.mp3');
+  game.load.audio('growl', 'assets/audio/growl.mp3');
 }
 
 // This function creates all of the elements used in the game
 function create() {
+  // Add background music
+  music = game.add.audio('song');
+
   // Apply game physics
   game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -72,8 +83,9 @@ function create() {
   // Set background
   game.add.sprite(0, 0, 'sky');
 
-  // Run function to create text elements
-  createText();
+  // Create sound effect elements
+  ping = game.add.audio('ping');
+  growl = game.add.audio('growl');
 
   // Create and add clouds
   clouds = game.add.group();
@@ -118,26 +130,9 @@ function create() {
 
   // Assign cursors to variable
   cursors = game.input.keyboard.createCursorKeys();
-}
 
-// This function runs while the game is being played
-function update() {
-  // This listens for overlap on the players and stars and runs collectStar()
-  game.physics.arcade.overlap(player, stars, collectStar, null, this);
-
-  // This listens for overlap between player and dragon and runs gameOver()
-  game.physics.arcade.overlap(player, dragon, gameOver, null, this);
-
-  //  Reset the player's velocity (movement)
-  player.body.velocity.x = 0;
-
-  if (cursors.left.isDown) {
-    //  Move to the left
-    player.body.velocity.x = -250;
-  } else if (cursors.right.isDown) {
-    //  Move to the right
-    player.body.velocity.x = 250;
-  }
+  // Play background music
+  music.play(null, 0.8, true);
 }
 
 // This function creates the text elements of the game after the font has been loaded
@@ -162,6 +157,26 @@ function createText() {
   });
 }
 
+// This function runs while the game is being played
+function update() {
+  // This listens for overlap on the players and stars and runs collectStar()
+  game.physics.arcade.overlap(player, stars, collectStar, null, this);
+
+  // This listens for overlap between player and dragon and runs gameOver()
+  game.physics.arcade.overlap(player, dragon, gameOver, null, this);
+
+  //  Reset the player's velocity (movement)
+  player.body.velocity.x = 0;
+
+  if (cursors.left.isDown) {
+    //  Move to the left
+    player.body.velocity.x = -250;
+  } else if (cursors.right.isDown) {
+    //  Move to the right
+    player.body.velocity.x = 250;
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // Listener on the "New Game" button
   document.querySelector('a').addEventListener('click', () => {
@@ -178,5 +193,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // TODO: Write README
 
-// TODO: GOLD - Increase the speed of the stars once XXX points earned
 // TODO: GOLD - Audio?

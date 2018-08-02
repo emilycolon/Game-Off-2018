@@ -81,6 +81,7 @@ function assignVelocity(star) {
 // This function is called when a star has been "collected"
 // Removed the element collected and creates a new one
 function collectStar(player, star) {
+  ping.play();
   // Removes the star from the screen and creates a new one
   star.kill();
   createStar();
@@ -94,6 +95,7 @@ function collectStar(player, star) {
 // Ends the game and shows game over message
 function gameOver(player, dragon) {
   game.paused = true;
+  growl.play();
   player.tint = 0xff0000;
   blur('add', dragon, player, clouds, stars, scoreText, pauseLabel);
 
