@@ -2,12 +2,19 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Rainbow Unicorn Dash</title>
+
+  <!-- Include external stylesheets -->
   <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <!-- Include custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- External stylesheets used by the game will show here when game preloads -->
+
+
 </head>
 
 <body>
@@ -23,7 +30,7 @@
       <!-- ACTUAL GAME WILL GO HERE 800x600px -->
     </div>
     <a href="#">
-      <img src="images/button.png">
+      <img src="images/button.png" alt="New Game">
     </a>
   </main>
 
@@ -31,9 +38,13 @@
     Copyright 2018 Emily Colón
   </footer>
 
+  <!-- Include external Scripts -->
+  <script src="https://cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
-  <script src="script.js"></script>
+  <!-- Include custom Scripts -->
+  <script src="js/script.js"></script>
+  <!-- required by script.js -->
+  <script src="js/functions.js"></script>
 
 </body>
 

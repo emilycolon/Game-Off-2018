@@ -1,0 +1,46 @@
+body {
+  background-color: #222222;
+  text-align: center;
+  font-family: 'VT323', monospace;
+  color: #FFF;
+}
+
+h1 {
+  font-size: 60px;
+}
+
+/* Rainbow text effect found 
+here: https://stackoverflow.com/questions/40557461/rainbow-gradient-on-text-in-css */
+
+.rainbow {
+  background: red;
+  background: -webkit-linear-gradient(left, red, orange, yellow, green, cyan, blue, violet);
+  background: -o-linear-gradient(right, red, orange, yellow, green, cyan, blue, violet);
+  background: -moz-linear-gradient(right, red, orange, yellow, green, cyan, blue, violet);
+  background: linear-gradient(to right, red, orange, yellow, green, cyan, blue, violet);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+main {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 100%;
+}
+
+/* justify-self below will throw an error in the validator, but without 
+this property the game appears to the left of the screen */
+
+#game-container {
+  grid-column: 1;
+  align-self: center;
+  justify-self: center;
+}
+
+a {
+  margin: 1% 0;
+}
+
+footer {
+  font-size: 20px;
+}
