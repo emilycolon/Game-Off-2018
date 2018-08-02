@@ -117,5 +117,5 @@ function gameOver() {
   dead.play();
   player.tint = 0xff0000;
   dragon.body.velocity = (0, 0);
-  game.time.events.add(Phaser.Timer.SECOND * 1, endPause, this);
+  game.time.events.add(Phaser.Timer.SECOND * 1.5, endPause, this);
 }
