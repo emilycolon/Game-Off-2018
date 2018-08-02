@@ -19,7 +19,7 @@ var score = 0;
 var scoreText;
 var music;
 var ping;
-var growl;
+var dead;
 
 /* Google Webfont code found here:
  * https://github.com/photonstorm/phaser-examples/blob/master/examples/text/google%20webfonts.js 
@@ -66,7 +66,7 @@ function preload() {
   // Load audio to be used in the game
   game.load.audio('song', 'assets/audio/music.mp3');
   game.load.audio('ping', 'assets/audio/star.mp3');
-  game.load.audio('growl', 'assets/audio/growl.mp3');
+  game.load.audio('dead', 'assets/audio/dead.mp3');
 }
 
 // This function creates all of the elements used in the game
@@ -85,7 +85,7 @@ function create() {
 
   // Create sound effect elements
   ping = game.add.audio('ping');
-  growl = game.add.audio('growl');
+  dead = game.add.audio('dead');
 
   // Create and add clouds
   clouds = game.add.group();
@@ -163,7 +163,7 @@ function update() {
   game.physics.arcade.overlap(player, stars, collectStar, null, this);
 
   // This listens for overlap between player and dragon and runs gameOver()
-  game.physics.arcade.overlap(player, dragon, gameOver, null, this);
+  game.physics.arcade.collide(player, dragon, gameOver, null, this);
 
   //  Reset the player's velocity (movement)
   player.body.velocity.x = 0;

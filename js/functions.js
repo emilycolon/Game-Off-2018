@@ -91,12 +91,8 @@ function collectStar(player, star) {
   scoreText.text = `score: ${score}`;
 }
 
-// This function is called when the player and dragon overlap
 // Ends the game and shows game over message
-function gameOver(player, dragon) {
-  game.paused = true;
-  growl.play();
-  player.tint = 0xff0000;
+function endPause() {
   blur('add', dragon, player, clouds, stars, scoreText, pauseLabel);
 
   // Create Game Over Message
@@ -104,4 +100,22 @@ function gameOver(player, dragon) {
   gameOverMsg.font = 'VT323';
   gameOverMsg.fontSize = 100;
   gameOverMsg.setShadow(4, 4, 'rgba(0,0,0,0.5)', 5);
+  game.paused = true;
+}
+
+// This function is called when the player and dragon overlap
+// Stops player and dragon movement, plays sound effect
+function gameOver() {
+  player.body.velocity.x = 0;
+  if (cursors.left.isDown) {
+    //  Do not allow move to the left
+    player.body.velocity.x = 0;
+  } else if (cursors.right.isDown) {
+    //  Do not allow move to the right
+    player.body.velocity.x = 0;
+  }
+  dead.play();
+  player.tint = 0xff0000;
+  dragon.body.velocity = (0, 0);
+  game.time.events.add(Phaser.Timer.SECOND * 1, endPause, this);
 }
