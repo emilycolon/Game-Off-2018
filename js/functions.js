@@ -52,14 +52,30 @@ function createStar() {
   );
   star.checkWorldBounds = true;
   star.events.onOutOfBounds.add(starOut, this);
-  star.body.velocity.y = 125;
+  assignVelocity(star);
 }
 
 // This function resets the star's horizontal location when it goes outside the world
 // bounds and has it appear back at the top of the screen
 function starOut(star) {
   star.reset(Math.floor(Math.random() * Math.floor(775)), -25);
-  star.body.velocity.y = 125;
+  assignVelocity(star);
+}
+
+// This function assigns a velocity to the star the is based on the current score
+// (increases the challenge)
+function assignVelocity(star) {
+  if (score < 300) {
+    return (star.body.velocity.y = 125);
+  } else if (score < 600) {
+    return (star.body.velocity.y = 175);
+  } else if (score < 900) {
+    return (star.body.velocity.y = 225);
+  } else if (score < 1500) {
+    return (star.body.velocity.y = 275);
+  } else {
+    return (star.body.velocity.y = 325);
+  }
 }
 
 // This function is called when a star has been "collected"
@@ -74,7 +90,7 @@ function collectStar(player, star) {
   scoreText.text = `score: ${score}`;
 }
 
-// This function is called when the player and dragon collide
+// This function is called when the player and dragon overlap
 // Ends the game and shows game over message
 function gameOver(player, dragon) {
   game.paused = true;

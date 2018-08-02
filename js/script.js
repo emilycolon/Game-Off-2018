@@ -47,6 +47,7 @@ function preload() {
     'BlurX',
     'https://cdn.rawgit.com/photonstorm/phaser-ce/master/filters/BlurX.js'
   );
+
   game.load.script(
     'BlurY',
     'https://cdn.rawgit.com/photonstorm/phaser-ce/master/filters/BlurY.js'
@@ -124,8 +125,8 @@ function update() {
   // This listens for overlap on the players and stars and runs collectStar()
   game.physics.arcade.overlap(player, stars, collectStar, null, this);
 
-  // This listens for collision between player and dragon and runs gameOver()
-  game.physics.arcade.collide(player, dragon, gameOver, null, this);
+  // This listens for overlap between player and dragon and runs gameOver()
+  game.physics.arcade.overlap(player, dragon, gameOver, null, this);
 
   //  Reset the player's velocity (movement)
   player.body.velocity.x = 0;
@@ -152,6 +153,7 @@ function createText() {
   pauseLabel = game.add.text(game.world.width - 100, 16, 'pause');
   pauseLabel.font = 'VT323';
   pauseLabel.fontSize = 36;
+
   pauseLabel.inputEnabled = true;
   pauseLabel.events.onInputUp.add(function() {
     // When the pause button is pressed, pause the game
