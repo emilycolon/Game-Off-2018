@@ -17,7 +17,6 @@ While developing this game, the following features were considered for the vario
 | Collectable Sprite                          | X   | X      | X    |
 | "Enemy" Sprite                              | X   | X      | X    |
 | Game Over Indicator                         | X   | X      | X    |
-| Collectable Sprite                          | X   | X      | X    |
 | Sound Effects/Audio                         |     | X      | X    |
 | Increase Collectable Speed w/ Game Progress |     | X      | X    |
 | Upgrade Sprite Animations                   |     |        | X    |
