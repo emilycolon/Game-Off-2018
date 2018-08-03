@@ -26,7 +26,7 @@ The current game encompasses all MVP and Silver level features. Gold-level featu
 
 ## Technologies Used
 
-_Rainbow Unicorn Dash!_ was created using JavaScript and [Phaser](https://phaser.io) 2.6.2, which is and open source HTML5 game framework. The JavaScript game itself appears on a page coded in HTML5 and CSS3.
+_Rainbow Unicorn Dash!_ was created using JavaScript and [Phaser](https://phaser.io) 2.6.2, which is an open source HTML5 game framework. The JavaScript game itself appears on a page coded in HTML5 and CSS3.
 
 ## Getting Started
 
