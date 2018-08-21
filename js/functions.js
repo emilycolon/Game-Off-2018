@@ -5,25 +5,10 @@
 
 // This function randomizes the dragon's X/Y gravity every time a collision
 // with the world bounds is detected
-function randomizeDragon(sprite, up, down, left, right) {
-  // let x = dragon.body.gravity.x;
-  // let y = dragon.body.gravity.y;
-  if (up) {
-    dragon.body.gravity.x = game.rnd.integerInRange(0, 50);
-    dragon.body.gravity.y = 20 + Math.random() * 100;
-  }
-  if (down) {
-    dragon.body.gravity.x = game.rnd.integerInRange(-50, 0);
-    dragon.body.gravity.y = 20 + Math.random() * 100;
-  }
-  if (left) {
-    dragon.body.gravity.x = game.rnd.integerInRange(-50, 50);
-    dragon.body.gravity.y = 20 + Math.random() * 100;
-  }
-  if (right) {
-    dragon.body.gravity.x = game.rnd.integerInRange(-50, 50);
-    dragon.body.gravity.y = 20 + Math.random() * -100;
-  }
+function randomizeDragon() {
+  dragon.body.gravity.x = game.rnd.integerInRange(-50, 50);
+  dragon.body.gravity.y = 20 + Math.random() * 100;
+
   console.log(
     `Collision, x is now ${dragon.body.gravity.x} and y is now ${
       dragon.body.gravity.y
