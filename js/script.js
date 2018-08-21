@@ -124,6 +124,7 @@ function create() {
   dragon.body.gravity.x = game.rnd.integerInRange(-50, 50);
   dragon.body.gravity.y = 20 + Math.random() * 100;
   dragon.body.bounce.setTo(1);
+  dragon.events.onWorldBounds = randomizeDragon();
 
   // Add a input listener to return to game from being paused
   game.input.onDown.add(unpause, self);
@@ -159,8 +160,6 @@ function createText() {
 
 // This function runs while the game is being played
 function update() {
-  dragon.events.onWorldBounds = randomizeDragon();
-
   // This listens for overlap on the players and stars and runs collectStar()
   game.physics.arcade.overlap(player, stars, collectStar, null, this);
 
