@@ -132,7 +132,7 @@ function create() {
   cursors = game.input.keyboard.createCursorKeys();
 
   // Play background music
-  music.play(null, 0.8, true);
+  music.loopFull(0.8);
 }
 
 // This function creates the text elements of the game after the font has been loaded
