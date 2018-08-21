@@ -124,7 +124,16 @@ function create() {
   dragon.body.gravity.x = game.rnd.integerInRange(-50, 50);
   dragon.body.gravity.y = 20 + Math.random() * 100;
   dragon.body.bounce.setTo(1);
-  dragon.body.onWorldBounds.add(randomizeDragon, this);
+  dragon.body.onWorldBounds = function() {
+    dragon.body.gravity.x = game.rnd.integerInRange(-50, 50);
+    dragon.body.gravity.y = 20 + Math.random() * 100;
+
+    console.log(
+      `Collision, x is now ${dragon.body.gravity.x} and y is now ${
+        dragon.body.gravity.y
+      }`
+    );
+  };
 
   // Add a input listener to return to game from being paused
   game.input.onDown.add(unpause, self);

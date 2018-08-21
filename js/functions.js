@@ -3,18 +3,11 @@
  * required by script.js
  */
 
-// This function randomizes the dragon's X/Y gravity every time a collision
-// with the world bounds is detected
-function randomizeDragon() {
-  dragon.body.gravity.x = game.rnd.integerInRange(-50, 50);
-  dragon.body.gravity.y = 20 + Math.random() * 100;
+// // This function randomizes the dragon's X/Y gravity every time a collision
+// // with the world bounds is detected
+// function randomizeDragon() {
 
-  console.log(
-    `Collision, x is now ${dragon.body.gravity.x} and y is now ${
-      dragon.body.gravity.y
-    }`
-  );
-}
+// }
 
 // This function applies blur to specific elements sent as arguments
 function blur(action, sprite) {
