@@ -159,7 +159,7 @@ function createText() {
 
 // This function runs while the game is being played
 function update() {
-  dragon.body.onWorldBounds = randomizeDragon();
+  dragon.events.onWorldBounds = randomizeDragon();
 
   // This listens for overlap on the players and stars and runs collectStar()
   game.physics.arcade.overlap(player, stars, collectStar, null, this);
