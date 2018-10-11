@@ -1,6 +1,6 @@
 # Project 4 - Capstone
 
-### _Rainbow Unicorn Dash!_ is a retro-inspired, browser based game, created as my capstone project for General Assembly's WDI training.
+### _Rainbow Unicorn Dash!_ is a retro-inspired, browser based game, created as my capstone project for General Assembly's WDI training. Play the game [here](https://emilycolon.github.io/Rainbow-Unicorn-Dash/).
 
 ![alt text](https://pages.git.generalassemb.ly/emilycolon/project-4/planning/finished.png 'Rainbow Unicorn Dash!')
 
