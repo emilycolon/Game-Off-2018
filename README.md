@@ -1,6 +1,6 @@
-# Project 4 - Capstone
+# Rainbow Unicorn Dash!
 
-### _Rainbow Unicorn Dash!_ is a retro-inspired, browser based game, created as my capstone project for General Assembly's WDI training. Play the game [here](https://emilycolon.github.io/Rainbow-Unicorn-Dash/).
+### _Rainbow Unicorn Dash!_ is a hybrid, retro-inspired, browser based game, originally created as my capstone project for General Assembly's WDI training. Play the original game [here](https://emilycolon.github.io/Rainbow-Unicorn-Dash/).
 
 ![alt text](https://github.com/emilycolon/Game-Off-2018/blob/master/planning/finished.png 'Rainbow Unicorn Dash!')
 
@@ -36,8 +36,8 @@ In order to include Phaser 2.6.2, you will need to either install via [npm](http
 <script src="https://cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script>
 ```
 
-Feel free to fork and clone this repo to either play the game locally or expand on the code. You will also need to set up a local web server in order to develop the game. Phaser offers a great, [step-by-step guide](http://phaser.io/tutorials/getting-started-phaser2/part2) on how to do that. While developing, I utlized [http-server](https://www.npmjs.com/package/http-server) for [node.js](https://nodejs.org/en/).
+Feel free to fork and clone this repo to either play the game locally or expand on the code. You will need to set up a local web server in order to develop the game. Phaser offers a great, [step-by-step guide](http://phaser.io/tutorials/getting-started-phaser2/part2) on how to do that. While developing, I utilized [http-server](https://www.npmjs.com/package/http-server) for [node.js](https://nodejs.org/en/).
 
 ## Help the Game Improve!
 
-If you would like submit suggestions for improvement, please submit an issue on this repo by clicking [here](https://github.com/emilycolon/Game-Off-2018/issues).
+If you would like submit suggestions for improvement, please submit an issue on this repo by clicking [here](https://github.com/emilycolon/Game-Off-2018/issues). All suggestions welcome!
