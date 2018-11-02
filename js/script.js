@@ -57,7 +57,7 @@ function preload() {
   );
 
   // Load images to be used in the game
-  game.load.image('sky', 'assets/images/sky.png');
+  game.load.image('sky', 'assets/images/sky.jpg');
   game.load.image('cloud', 'assets/images/cloud.png');
   game.load.image('star', 'assets/images/star.png');
   game.load.image('dragon', 'assets/images/dragon.png');
