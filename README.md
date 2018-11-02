@@ -42,3 +42,7 @@ Feel free to fork and clone this repo to either play the game locally or expand 
 ## Help the Game Improve!
 
 If you would like submit suggestions for improvement, please [submit an issue](https://github.com/emilycolon/Game-Off-2018/issues) on this repo. All suggestions welcome!  
+
+// TODO: - Fix collectable speed: set as increasing loop rather than hard coded in order to account for increasing scores
+// TODO: - Fix end game sound effect: is triggered multiple times??
+// TODO: - Change background and clouds to be photorealistic (my interpretation of HYBRID for the Game Off)
