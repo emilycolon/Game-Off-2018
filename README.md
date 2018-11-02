@@ -40,4 +40,4 @@ Feel free to fork and clone this repo to either play the game locally or expand 
 
 ## Help the Game Improve!
 
-If you would like submit suggestions for improvement, please submit an issue on this repo by clicking [here](https://github.com/emilycolon/Game-Off-2018/issues). All suggestions welcome!
+If you would like submit suggestions for improvement, please [submit an issue](https://github.com/emilycolon/Game-Off-2018/issues) on this repo. All suggestions welcome!  
