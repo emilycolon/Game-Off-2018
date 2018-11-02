@@ -1,6 +1,7 @@
 # Rainbow Unicorn Dash!
 
-### _Rainbow Unicorn Dash!_ is a hybrid, retro-inspired, browser based game, originally created as my capstone project for General Assembly's WDI training. Play the original game [here](https://emilycolon.github.io/Rainbow-Unicorn-Dash/).
+_Rainbow Unicorn Dash!_ is a hybrid, retro-inspired, browser based game, originally created as my capstone project for General Assembly's WDI training. Play the original game [here](https://emilycolon.github.io/Rainbow-Unicorn-Dash/).
+// FIXME: update this link once game is refactored/updated
 
 ![alt text](https://github.com/emilycolon/Game-Off-2018/blob/master/planning/finished.png 'Rainbow Unicorn Dash!')
 
