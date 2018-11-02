@@ -2,7 +2,7 @@
 
 ### _Rainbow Unicorn Dash!_ is a retro-inspired, browser based game, created as my capstone project for General Assembly's WDI training. Play the game [here](https://emilycolon.github.io/Rainbow-Unicorn-Dash/).
 
-![alt text](https://pages.git.generalassemb.ly/emilycolon/project-4/planning/finished.png 'Rainbow Unicorn Dash!')
+![alt text](https://github.com/emilycolon/Game-Off-2018/blob/master/planning/finished.png 'Rainbow Unicorn Dash!')
 
 ## Features
 
@@ -40,4 +40,4 @@ Feel free to fork and clone this repo to either play the game locally or expand 
 
 ## Help the Game Improve!
 
-If you would like submit suggestions for improvement, please submit an issue on this repo by clicking [here](https://git.generalassemb.ly/emilycolon/project-4/issues).
+If you would like submit suggestions for improvement, please submit an issue on this repo by clicking [here](https://github.com/emilycolon/Game-Off-2018/issues).
